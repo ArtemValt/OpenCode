@@ -4,62 +4,57 @@ import java.util.Scanner;
 
 public class Main {
         public static void main(String[] args) {
-
             System.out.println("Введите число N: ");
             Scanner in = new Scanner(System.in);
-            int N = in.nextInt();
-            int[][] array = new int[N][N];
-            int minRow = 0, maxRow = N - 1, minCol = 0, maxCol = N - 1;
+            int n = in.nextInt();
+            int[][] array = new int[n][n];
+            int minR = 0,maxR = n - 1, minC = 0, maxC = n - 1;
             int count = 1;
-
             boolean breakFlag = false;
             boolean secondCircle = false;
-
-            System.out.println("Ваша спираль: ");
-
             while (!breakFlag) {
                 if (secondCircle) {
-                    maxCol--;
+                    maxC--;
                 }
 
-                for (int i = minCol; i <= maxCol; i++) {
-                    array[minRow][i] = count;
+                for (int i = minC; i <= maxC; i++) {
+                    array[minR][i] = count;
                     count++;
                 }
-                minRow++;
+                minR++;
                 if (secondCircle) {
-                    maxRow--;
+                    maxR--;
                 }
 
-                for (int i = minRow; i <= maxRow; i++) {
-                    array[i][maxCol] = count;
+                for (int i = minR; i <= maxR; i++) {
+                    array[i][maxC] = count;
                     count++;
                 }
-                maxCol--;
+                maxC--;
                 if (secondCircle) {
-                    minCol++;
+                    minC++;
                 }
 
-                for (int i = maxCol; i >= minCol; i--) {
-                    array[maxRow][i] = count;
+                for (int i = maxC; i >= minC; i--) {
+                    array[maxR][i] = count;
                     count++;
                 }
-                maxRow--;
-                minRow++;
+                maxR--;
+                minR++;
 
-                for (int i = maxRow; i >= minRow; i--) {
-                    array[i][minCol] = count;
+                for (int i = maxR; i >= minR; i--) {
+                    array[i][minC] = count;
                     count++;
                 }
-                minCol++;
+                minC++;
 
                 secondCircle = true;
-                if (maxCol < 0 || maxRow < 0) {
+                if (maxC < 0 || maxR < 0) {
                     breakFlag = true;
                 }
             }
-            for (int i = 0; i < N; i++) {
-                for (int j = 0; j < N; j++) {
+            for (int i = 0; i < n; i++) {
+                for (int j = 0; j < n; j++) {
                     System.out.printf("%3d ", array[i][j]);
                 }
                 System.out.println("");
